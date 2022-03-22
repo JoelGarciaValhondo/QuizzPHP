@@ -46,8 +46,6 @@
     function cargaTema(_tema){
         $('#partida').load('partida.php', {tema: _tema});
     }
-
-
 </script>
 </body>
 </html>
