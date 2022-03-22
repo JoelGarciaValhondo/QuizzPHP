@@ -8,18 +8,46 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-    <?php
-        include('misfunciones.php');
-        //mysqli guarda la conexion a la BBDD
-        $mysqli = conectaBBDD();
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">QUIZ PHP</a>
+  </div>
+</nav>
+<br>
+    <div class="container">
+        <div class="row">
 
-        $consulta = $mysqli -> query("SELECT * FROM preguntas");
-        $num_filas = $consulta -> num_rows;
+            <div class="col-2">
+            </div>
+            <div class="col-8" id="partida">
+            <?php
+                include('misfunciones.php');
+                //$mysqli guarda la conexión a la BBDD
+                $mysqli = conectaBBDD();
 
-        for($i=0; $i < $num_filas; $i++){
-            $r = $consulta -> fetch_array();
-            echo $r['enunciado'].'<br>';
-        }
-    ?>
+                $consulta = $mysqli -> query("SELECT * FROM `preguntas` GROUP BY `tema`");
+                $num_filas = $consulta -> num_rows;
+
+                for ($i=0; $i<$num_filas; $i++){
+                    $r = $consulta -> fetch_array();
+                    ?>
+                    <button onclick="cargaTema('<?php echo $r['tema']?>')" type="button" class="btn btn-primary col-12"><?php echo $r['tema']?></button><br><br>
+                    <?php
+                }
+
+            ?>     
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.js"></script>
+<script>
+    function cargaTema(_tema){
+        $('#partida').load('partida.php', {tema: _tema});
+    }
+
+
+</script>
 </body>
 </html>
