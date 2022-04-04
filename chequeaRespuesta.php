@@ -27,12 +27,10 @@
         //echo "acertaste!!";
         ?>
         <br><br>
-        <button onclick="vueltaTest('<?php echo $tema2; ?>')" type="button" class="btn btn-primary col-12">Siguiente Pregunta <?php echo $tema2 ?></button>
+        <button onclick="vueltaTest('<?php echo $tema2; ?>')" type="button" class="btn btn-primary col-12">CORRECTO! -> Siguiente Pregunta de <?php echo $tema2 ?></button>
         <?php
     }
-    else{
-        echo "incorrecta loser!!";
-    }
+
 ?>
 <script>
     function vueltaTest(tema2){
